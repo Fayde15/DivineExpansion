@@ -2,17 +2,18 @@
 schemaVersion = "0.0.1"
 
 [package]
-namespace = "Kuipo"
-name = "NSFWResprite"
-versionNumber = "1.1.12"
-description = "Replaces most of the 2D artwork in the game with NSFW images"
-websiteUrl = "https://github.com/Kuipo/Hades2-NSFW-Resprite"
-containsNsfwContent = true
+namespace = "DET"
+name = "DivineExpansion"
+versionNumber = "0.0.1"
+description = "Adds gods to Hades 2"
+websiteUrl = "https://github.com/Kuipo/DivineExpansion"
+containsNsfwContent = false
 
 [package.dependencies]
-Hell2Modding-Hell2Modding = "1.0.60"
+Hell2Modding-Hell2Modding = "1.0.74"
 SGG_Modding-SJSON = "1.0.0"
 SGG_Modding-ModUtil = "4.0.1"
+zannc-GodsAPI = "1.0.1"
 
 [build]
 icon = "./icon.png"
@@ -30,10 +31,6 @@ target = "./LICENSE"
 [[build.copy]]
 source = "./src"
 target = "./plugins"
-
-[[build.copy]]
-source = "./packages"
-target = "./plugins_data"
 
 [publish]
 repository = "https://thunderstore.io"
