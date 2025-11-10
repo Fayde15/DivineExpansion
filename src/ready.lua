@@ -13,5 +13,3 @@ modutil.mod.Path.Wrap("SetupMap", function(base)
     LoadPackages({Names = {"DET-DivineExpansion"}})
     base()
 end)
-
-gods.Initialize(_PLUGIN.guid)

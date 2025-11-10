@@ -2,12 +2,48 @@
 -- globals we define are private to our plugin!
 ---@diagnostic disable: lowercase-global
 
+local textLineSets = {
+	TycheChat01 = {
+		PlayFirst = true,
+		UseableOffSource = true,
+		GameStateRequirements = {
+			{
+				Path = { "GameState", "GamePhase" },
+				Comparison = "==",
+				Value = 1,
+			},
+		},
+		{ Cue = "/VO/Artemis_0010", UseEventEndSound = true, Text = "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+	},
+    TycheChat02 = {
+		PlayFirst = true,
+		UseableOffSource = true,
+		GameStateRequirements = {
+			{
+				PathTrue = { "CurrentRun", "BiomesReached", "G" },
+			},
+		},
+		{ Cue = "/VO/Artemis_0011", UseEventEndSound = true, Text = "Ut enim ad minim veniam, quis nostrud exercitation." },
+	},
+    TycheChat03 = {
+		PlayFirst = true,
+		UseableOffSource = true,
+		GameStateRequirements = {
+			{
+				PathTrue = { "CurrentRun", "BiomesReached", "F" },
+			},
+		},
+		{ Cue = "/VO/Artemis_0012", UseEventEndSound = true, Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+	},
+}
 
-local tyche_params = {
+
+gods.InitializeGod({
     godName = "Tyche",
     godType  = "GOD",
     SpawnLikeHermes  = false,
     Gender = "F",
+    LoadPackages = { "DET-DivineExpansion" },
     FlavorTextIds = { "TycheUpgrade_FlavorText01", "TycheUpgrade_FlavorText02", "TycheUpgrade_FlavorText03" },
 
     Traits = game.EnemyData.NPC_Athena_01.Traits,
@@ -15,9 +51,47 @@ local tyche_params = {
     Color = { 255, 90, 140, 255 },
     LightingColor = { 250, 165, 190, 190 },
     LootColor = { 255, 90, 140, 180 },
-}
 
-local tyche_olympian_params = {
+    FirstSpawnVoiceLines = {
+		PreLineWait = 0.7,
+		GameStateRequirements = {
+			{
+				Path = { "CurrentRun", "CurrentRoom", "RoomSetName" },
+				IsNone = { "H" },
+			},
+		},
+		{ Cue = "/VO/MelinoeField_2808", Text = "It's her..." },
+	},
+
+    OnSpawnVoiceLines = {
+		BreakIfPlayed = true,
+		RandomRemaining = true,
+		PlayOnceFromTableThisRun = true,
+		PreLineWait = 0.85,
+		SuccessiveChanceToPlay = 0.25,
+		GameStateRequirements = {
+			NamedRequirements = { "OlympianOnSpawnVoiceLinesAllowed" },
+		},
+
+		{
+			Cue = "/VO/Melinoe_1472",
+			Text = "It's her.",
+		},
+		{
+			Cue = "/VO/Melinoe_1477",
+			Text = "She's back.",
+		},
+		{
+			Cue = "/VO/ArtemisKeepsake_0214",
+			Text = "Hey Sister.",
+		},
+	},
+
+    InteractTextLineSets = textLineSets,
+})
+
+gods.CreateOlympianSJSONData({
+    pluginGUID = _PLUGIN.guid,
     godName = "Tyche",
     godType = "god",
     skipBoonSelectSymbol = false,
@@ -34,9 +108,5 @@ local tyche_olympian_params = {
         AnnoyedPortraitFilePath = "DET-DivineExpansion\\Tyche\\Portrait_Tyche_Default_01",
         SeriousPortraitFilePath = "DET-DivineExpansion\\Tyche\\Portrait_Tyche_Default_01",
     },
-}
-
-gods.InitializeGod(tyche_params)
-
-gods.CreateOlympianSJSONData(tyche_olympian_params)
+})
 
