@@ -1,5 +1,5 @@
 -- Creating the boon functions itself
-game.TraitData.Tyche_Boon = {
+game.TraitData.Tyche_Attack_Boon = {
 InheritFrom = { "BaseTrait", "EarthBoon" },
 Elements = { "Earth" }, -- Need to add this even if you inherit
 Name = "Tyche_Attack_Boon",
@@ -69,3 +69,10 @@ BoonInfoTitle = "Tyche_Attack",
 			}
 		},
     }
+
+	local TycheTraitDictionary = {
+	Tyche_Attack_Boon = true,
+	}
+
+	game.LootData.TycheUpgrade.TraitIndex = TycheTraitDictionary
+	
