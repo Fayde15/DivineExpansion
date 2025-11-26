@@ -8,7 +8,7 @@ gods.CreateBoon({
     --[[? Everything below is an Optional field]]
 
     -- "Melee" or "Secondary" or "Ranged" or "Rush" or "Mana", doesn't need to be passed if not a core boon.
-    Slot = "Special", 
+    Slot = "Melee", 
     BlockStacking = false, -- Can't be upgraded with poms
     StatLines = { "NearbyDamageStatDisplay1" }, -- The display for damage bonus etc etc.
     ExtractValues = { -- Values to get from ExtraFields eg any damage bonus, which is ued in description and in the stat display.
